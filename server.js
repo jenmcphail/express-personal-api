@@ -37,16 +37,41 @@ app.get('/', function homepage(req, res) {
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
+    //woops_i_has_forgot_to_document_all_my_endpoints: false // CHANGED ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentation_url: "https://github.com/jenmcphail/express_self_api/README.md", // CHANGE ME
+    base_url: "http://desolate-headland-28994.herokuapp.com", // CHANGED
     endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {
+      method: "GET", 
+      path: "/api", 
+      description: "Info about the my personal api"
+      },
+      {
+      method: "GET", 
+      path: "/api/profile", 
+      description: "Info about me"
+      }, // CHANGED
+      {
+      method: "POST", 
+      path: "/api/favorite-songs", 
+      description: "lists my favorite songs and allows users to add new favorite songs"} // CHANGE ME
     ]
   })
+});
+
+app.get('/api/profile', function api_profile(req, res) {
+  // hardcoded profile data below
+  res.json(
+      {name: "Jen McPhail", 
+      github_link: "http://www.github/com/jenmcphail", 
+      github_profile_image: "https://avatars3.githubusercontent.com/u/18298639?v=3&s=460",
+      home_town: "Baltimore, MD", 
+      current_city: "San Francisco, CA", 
+      family_members: [{name: "Dianne", relationship: "mother"}, 
+      {name: "Samuel", relationship: "father"},
+      {name: "Lindsay", relationship: "sister"}]
+    })
 });
 
 /**********
