@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  ************/
 
 var db = require('./models');
+
 const profileData =
   {
   name: "Jen McPhail", 
@@ -23,6 +24,29 @@ const profileData =
     {name: "Samuel", relationship: "father"},
     {name: "Lindsay", relationship: "sister"}]
   };
+
+const favoriteSongs =
+  [{
+  id: 123,
+  artist: "Raffi",
+  songTitle: "Bananaphone",
+  album: "Bananaphone",
+  yearReleased: "1994",
+  },
+  {
+  id: 456,
+  artist: "Shaggy",
+  songTitle: "It Wasn't Me",
+  album: "Hot Shot",
+  yearReleased: "2000",
+  },
+  {
+  id: 789,
+  artist: "Marky Mark feat the Funky Bunch",
+  songTitle: "Good Vibrations",
+  album: "Music for the People",
+  yearReleased: "1991",
+  }];
 
 /**********
  * ROUTES *
@@ -64,7 +88,7 @@ app.get('/api', function api_index(req, res) {
       description: "Info about me"
       }, // CHANGED
       {
-      method: "POST", 
+      method: "GET", 
       path: "/api/favorite-songs", 
       description: "lists my favorite songs and allows users to add new favorite songs"} // CHANGE ME
     ]
@@ -72,8 +96,19 @@ app.get('/api', function api_index(req, res) {
 });
 
 app.get('/api/profile', function api_profile(req, res) {
-  // hardcoded profile data below
   res.json(profileData)
+});
+
+app.get('/api/favorite-songs', function api_songs(req, res) {
+  res.json(favoriteSongs)
+});
+
+app.get("api/favorite-songs/:id", function api_one_song(req, res){
+  for (i = 0; i<favoriteSongs.length; i++){
+    if (req.params.id == favoriteSongs[i].id){
+      res.json(favoriteSongs[i]);
+    }
+  }
 });
 
 /**********
