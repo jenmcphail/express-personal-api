@@ -11,7 +11,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
+const profileData =
+  {
+  name: "Jen McPhail", 
+  github_link: "http://www.github/com/jenmcphail", 
+  github_profile_image: "https://avatars3.githubusercontent.com/u/18298639?v=3&s=460",
+  home_town: "Baltimore, MD", 
+  current_city: "San Francisco, CA", 
+  family_members: [{name: "Dianne", relationship: "mother"}, 
+    {name: "Samuel", relationship: "father"},
+    {name: "Lindsay", relationship: "sister"}]
+  };
 
 /**********
  * ROUTES *
@@ -62,16 +73,7 @@ app.get('/api', function api_index(req, res) {
 
 app.get('/api/profile', function api_profile(req, res) {
   // hardcoded profile data below
-  res.json(
-      {name: "Jen McPhail", 
-      github_link: "http://www.github/com/jenmcphail", 
-      github_profile_image: "https://avatars3.githubusercontent.com/u/18298639?v=3&s=460",
-      home_town: "Baltimore, MD", 
-      current_city: "San Francisco, CA", 
-      family_members: [{name: "Dianne", relationship: "mother"}, 
-      {name: "Samuel", relationship: "father"},
-      {name: "Lindsay", relationship: "sister"}]
-    })
+  res.json(profileData)
 });
 
 /**********
